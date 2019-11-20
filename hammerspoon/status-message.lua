@@ -1,23 +1,22 @@
 local drawing = require 'hs.drawing'
-local geometry = require 'hs.geometry'
 local screen = require 'hs.screen'
 local styledtext = require 'hs.styledtext'
 
 local statusmessage = {}
 statusmessage.new = function(messageText)
   local buildParts = function(messageText)
-    local frame = screen.primaryScreen():frame()
+    local frame = screen.mainScreen():frame()
 
     local styledTextAttributes = {
-      font = { name = 'Monaco', size = 24 },
+      font = { name = 'Monaco', size = 24, color = 'white' },
     }
 
     local styledText = styledtext.new('🔨 ' .. messageText, styledTextAttributes)
 
     local styledTextSize = drawing.getTextDrawingSize(styledText)
     local textRect = {
-      x = frame.w - styledTextSize.w - 40,
-      y = frame.h - styledTextSize.h,
+      x = frame.x + frame.w - styledTextSize.w - 40,
+      y = frame.y + 40,
       w = styledTextSize.w + 40,
       h = styledTextSize.h + 40,
     }
@@ -25,8 +24,8 @@ statusmessage.new = function(messageText)
 
     local background = drawing.rectangle(
       {
-        x = frame.w - styledTextSize.w - 45,
-        y = frame.h - styledTextSize.h - 3,
+        x = frame.x + frame.w - styledTextSize.w - 45,
+        y = frame.y + 40,
         w = styledTextSize.w + 15,
         h = styledTextSize.h + 6
       }

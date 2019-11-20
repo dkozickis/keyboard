@@ -1,4 +1,6 @@
 local log = hs.logger.new('init.lua', 'debug')
+local message = require('keyboard.status-message')
+local messageBlocked = message.new('❌ Blocked')
 
 -- Use Control+` to reload Hammerspoon config
 hs.hotkey.bind({'ctrl'}, '`', nil, function()
@@ -40,4 +42,10 @@ require('keyboard.panes')
 require('keyboard.super')
 require('keyboard.windows')
 
+hs.ipc.cliInstall()
+
+hs.hotkey.bind({}, "up", function() messageBlocked:notify() end)
+hs.hotkey.bind({}, "down", function() messageBlocked:notify() end)
+hs.hotkey.bind({}, "right", function() messageBlocked:notify() end)
+hs.hotkey.bind({}, "left", function() messageBlocked:notify() end)
 hs.notify.new({title='Hammerspoon', informativeText='Ready to rock 🤘'}):send()

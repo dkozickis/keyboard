@@ -26,6 +26,7 @@ function hs.window.right(win)
   local f = win:frame()
   local screen = win:screen()
   local max = screen:frame()
+  print(max)
 
   f.x = max.x + (max.w / 2)
   f.y = max.y
