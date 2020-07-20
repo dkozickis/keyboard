@@ -5,4 +5,6 @@ return {
   { 'i', 'IntelliJ IDEA Ultimate' },
   { 'g', 'Telegram Desktop' },
   { 't', 'iTerm' },
+  { 'i', 'IntelliJ IDEA' },
+  { 'o', 'Visual Studio Code' },
 }

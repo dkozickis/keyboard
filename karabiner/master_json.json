@@ -11,21 +11,124 @@
           "basic.simultaneous_threshold_milliseconds": 50,
           "basic.to_delayed_action_delay_milliseconds": 500,
           "basic.to_if_alone_timeout_milliseconds": 1000,
-          "basic.to_if_held_down_threshold_milliseconds": 500,
-          "mouse_motion_to_scroll.speed": 100
+          "basic.to_if_held_down_threshold_milliseconds": 500
         },
         "rules": [
           {
-            "description": "Default to grave accent on non_us_backslash",
             "manipulators": [
               {
+                "description": "Change right option to Hyper (i.e., command+control+option+shift)",
                 "from": {
-                  "key_code": "non_us_backslash"
+                  "key_code": "right_option",
+                  "modifiers": {
+                    "optional": ["any"]
+                  }
                 },
                 "to": [
                   {
-                    "key_code": "grave_accent_and_tilde",
-                    "modifiers": ["left_alt"]
+                    "key_code": "left_shift",
+                    "modifiers": ["left_control", "left_option", "left_command"]
+                  }
+                ],
+                "type": "basic"
+              }
+            ]
+          },
+          {
+            "manipulators": [
+              {
+                "description": "[Bear] Use control+d to toggle todo state",
+                "from": {
+                  "key_code": "d",
+                  "modifiers": {
+                    "mandatory": ["control"]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "t",
+                    "modifiers": ["left_command", "left_shift"]
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "frontmost_application_if",
+                    "bundle_identifiers": ["^net\\.shinyfrog\\.bear$"]
+                  }
+                ],
+                "type": "basic"
+              }
+            ]
+          },
+          {
+            "manipulators": [
+              {
+                "description": "[Bear] Use command+v to paste as plain text",
+                "from": {
+                  "key_code": "v",
+                  "modifiers": {
+                    "mandatory": ["command"]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "v",
+                    "modifiers": ["left_command", "left_option", "left_shift"]
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "frontmost_application_if",
+                    "bundle_identifiers": ["^net\\.shinyfrog\\.bear$"]
+                  }
+                ],
+                "type": "basic"
+              }
+            ]
+          },
+          {
+            "description": "[Bear] Use control+command+down/up to move current line(s) down/up",
+            "manipulators": [
+              {
+                "description": "[Bear] Use control+command+down to move current line(s) down",
+                "from": {
+                  "key_code": "down_arrow",
+                  "modifiers": {
+                    "mandatory": ["control", "command"]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "down_arrow",
+                    "modifiers": ["left_command", "left_option"]
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "frontmost_application_if",
+                    "bundle_identifiers": ["^net\\.shinyfrog\\.bear$"]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "[Bear] Use control+command+down to move current line(s) up",
+                "from": {
+                  "key_code": "up_arrow",
+                  "modifiers": {
+                    "mandatory": ["control", "command"]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "up_arrow",
+                    "modifiers": ["left_command", "left_option"]
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "frontmost_application_if",
+                    "bundle_identifiers": ["^net\\.shinyfrog\\.bear$"]
                   }
                 ],
                 "type": "basic"
@@ -48,8 +151,8 @@
                   "simultaneous_options": {
                     "detect_key_down_uninterruptedly": true,
                     "key_down_order": "insensitive",
-                    "key_up_order": "insensitive",
-                    "key_up_when": "any",
+          "key_up_order": "insensitive",
+          "key_up_when": "any",
                     "to_after_key_up": [
                       {
                         "set_variable": {
@@ -76,13 +179,6 @@
             "description": "(S)uper(D)uper + H -> Left",
             "manipulators": [
               {
-                "conditions": [
-                  {
-                    "name": "superduper-mode",
-                    "type": "variable_if",
-                    "value": 1
-                  }
-                ],
                 "from": {
                   "key_code": "h",
                   "modifiers": {
@@ -94,6 +190,13 @@
                     "key_code": "left_arrow"
                   }
                 ],
+                "conditions": [
+                  {
+                    "name": "superduper-mode",
+                    "value": 1,
+                    "type": "variable_if"
+                  }
+                ],
                 "type": "basic"
               }
             ]
@@ -102,13 +205,6 @@
             "description": "(S)uper(D)uper + J -> Down",
             "manipulators": [
               {
-                "conditions": [
-                  {
-                    "name": "superduper-mode",
-                    "type": "variable_if",
-                    "value": 1
-                  }
-                ],
                 "from": {
                   "key_code": "j",
                   "modifiers": {
@@ -120,6 +216,13 @@
                     "key_code": "down_arrow"
                   }
                 ],
+                "conditions": [
+                  {
+                    "name": "superduper-mode",
+                    "value": 1,
+                    "type": "variable_if"
+                  }
+                ],
                 "type": "basic"
               }
             ]
@@ -128,13 +231,6 @@
             "description": "(S)uper(D)uper + K -> Up",
             "manipulators": [
               {
-                "conditions": [
-                  {
-                    "name": "superduper-mode",
-                    "type": "variable_if",
-                    "value": 1
-                  }
-                ],
                 "from": {
                   "key_code": "k",
                   "modifiers": {
@@ -146,6 +242,13 @@
                     "key_code": "up_arrow"
                   }
                 ],
+                "conditions": [
+                  {
+                    "name": "superduper-mode",
+                    "value": 1,
+                    "type": "variable_if"
+                  }
+                ],
                 "type": "basic"
               }
             ]
@@ -154,13 +257,6 @@
             "description": "(S)uper(D)uper + L -> Right",
             "manipulators": [
               {
-                "conditions": [
-                  {
-                    "name": "superduper-mode",
-                    "type": "variable_if",
-                    "value": 1
-                  }
-                ],
                 "from": {
                   "key_code": "l",
                   "modifiers": {
@@ -172,6 +268,13 @@
                     "key_code": "right_arrow"
                   }
                 ],
+                "conditions": [
+                  {
+                    "name": "superduper-mode",
+                    "value": 1,
+                    "type": "variable_if"
+                  }
+                ],
                 "type": "basic"
               }
             ]
@@ -180,13 +283,6 @@
             "description": "(S)uper(D)uper + A -> Option",
             "manipulators": [
               {
-                "conditions": [
-                  {
-                    "name": "superduper-mode",
-                    "type": "variable_if",
-                    "value": 1
-                  }
-                ],
                 "from": {
                   "key_code": "a",
                   "modifiers": {
@@ -198,6 +294,13 @@
                     "key_code": "left_option"
                   }
                 ],
+                "conditions": [
+                  {
+                    "name": "superduper-mode",
+                    "value": 1,
+                    "type": "variable_if"
+                  }
+                ],
                 "type": "basic"
               }
             ]
@@ -206,13 +309,6 @@
             "description": "(S)uper(D)uper + F -> Command",
             "manipulators": [
               {
-                "conditions": [
-                  {
-                    "name": "superduper-mode",
-                    "type": "variable_if",
-                    "value": 1
-                  }
-                ],
                 "from": {
                   "key_code": "f",
                   "modifiers": {
@@ -224,6 +320,13 @@
                     "key_code": "right_command"
                   }
                 ],
+                "conditions": [
+                  {
+                    "name": "superduper-mode",
+                    "value": 1,
+                    "type": "variable_if"
+                  }
+                ],
                 "type": "basic"
               }
             ]
@@ -232,13 +335,6 @@
             "description": "(S)uper(D)uper + Space -> Shift",
             "manipulators": [
               {
-                "conditions": [
-                  {
-                    "name": "superduper-mode",
-                    "type": "variable_if",
-                    "value": 1
-                  }
-                ],
                 "from": {
                   "key_code": "spacebar",
                   "modifiers": {
@@ -250,6 +346,13 @@
                     "key_code": "right_shift"
                   }
                 ],
+                "conditions": [
+                  {
+                    "name": "superduper-mode",
+                    "value": 1,
+                    "type": "variable_if"
+                  }
+                ],
                 "type": "basic"
               }
             ]
@@ -258,13 +361,6 @@
             "description": "(S)uper(D)uper + U -> First Tab",
             "manipulators": [
               {
-                "conditions": [
-                  {
-                    "name": "superduper-mode",
-                    "type": "variable_if",
-                    "value": 1
-                  }
-                ],
                 "from": {
                   "key_code": "u",
                   "modifiers": {
@@ -277,6 +373,13 @@
                     "modifiers": ["left_command"]
                   }
                 ],
+                "conditions": [
+                  {
+                    "name": "superduper-mode",
+                    "value": 1,
+                    "type": "variable_if"
+                  }
+                ],
                 "type": "basic"
               }
             ]
@@ -285,13 +388,6 @@
             "description": "(S)uper(D)uper + I -> Prev Tab",
             "manipulators": [
               {
-                "conditions": [
-                  {
-                    "name": "superduper-mode",
-                    "type": "variable_if",
-                    "value": 1
-                  }
-                ],
                 "from": {
                   "key_code": "i",
                   "modifiers": {
@@ -304,6 +400,13 @@
                     "modifiers": ["left_command", "left_shift"]
                   }
                 ],
+                "conditions": [
+                  {
+                    "name": "superduper-mode",
+                    "value": 1,
+                    "type": "variable_if"
+                  }
+                ],
                 "type": "basic"
               }
             ]
@@ -312,13 +415,6 @@
             "description": "(S)uper(D)uper + O -> Next Tab",
             "manipulators": [
               {
-                "conditions": [
-                  {
-                    "name": "superduper-mode",
-                    "type": "variable_if",
-                    "value": 1
-                  }
-                ],
                 "from": {
                   "key_code": "o",
                   "modifiers": {
@@ -331,6 +427,13 @@
                     "modifiers": ["left_command", "left_shift"]
                   }
                 ],
+                "conditions": [
+                  {
+                    "name": "superduper-mode",
+                    "value": 1,
+                    "type": "variable_if"
+                  }
+                ],
                 "type": "basic"
               }
             ]
@@ -339,13 +442,6 @@
             "description": "(S)uper(D)uper + P -> Last Tab",
             "manipulators": [
               {
-                "conditions": [
-                  {
-                    "name": "superduper-mode",
-                    "type": "variable_if",
-                    "value": 1
-                  }
-                ],
                 "from": {
                   "key_code": "p",
                   "modifiers": {
@@ -358,55 +454,11 @@
                     "modifiers": ["left_command"]
                   }
                 ],
-                "type": "basic"
-              }
-            ]
-          },
-          {
-            "description": "Change caps_lock key to command+control+option+shift. (Post escape key when pressed alone)",
-            "manipulators": [
-              {
-                "from": {
-                  "key_code": "caps_lock",
-                  "modifiers": {
-                    "optional": ["any"]
-                  }
-                },
-                "to": [
+                "conditions": [
                   {
-                    "key_code": "left_shift",
-                    "modifiers": ["left_command", "left_control", "left_option"]
-                  }
-                ],
-                "to_if_alone": [
-                  {
-                    "key_code": "escape"
-                  }
-                ],
-                "type": "basic"
-              }
-            ]
-          },
-          {
-            "description": "Change caps_lock key to command+control+option+shift if pressed with other keys",
-            "manipulators": [
-              {
-                "from": {
-                  "key_code": "caps_lock",
-                  "modifiers": {
-                    "optional": ["any"]
-                  }
-                },
-                "to": [
-                  {
-                    "key_code": "left_shift",
-                    "modifiers": ["left_command", "left_control", "left_option"]
-                  }
-                ],
-                "to_if_alone": [
-                  {
-                    "hold_down_milliseconds": 100,
-                    "key_code": "caps_lock"
+                    "name": "superduper-mode",
+                    "value": 1,
+                    "type": "variable_if"
                   }
                 ],
                 "type": "basic"
@@ -580,17 +632,21 @@
           }
         }
       ],
-      "name": "Default profile",
-      "parameters": {
-        "delay_milliseconds_before_open_device": 1000
-      },
+      "name": "Default",
       "selected": true,
-      "simple_modifications": [],
+      "simple_modifications": [
+        {
+          "from": {
+            "key_code": "caps_lock"
+          },
+          "to": {
+            "key_code": "left_control"
+          }
+        }
+      ],
       "virtual_hid_keyboard": {
         "caps_lock_delay_milliseconds": 0,
-        "country_code": 0,
-        "keyboard_type": "ansi",
-        "mouse_key_xy_scale": 100
+        "keyboard_type": "ansi"
       }
     }
   ]
