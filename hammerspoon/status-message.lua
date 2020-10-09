@@ -8,7 +8,8 @@ statusmessage.new = function(messageText)
     local frame = screen.mainScreen():frame()
 
     local styledTextAttributes = {
-      font = { name = 'Monaco', size = 24, color = 'white' },
+      font = { name = 'Monaco', size = 24 },
+      color = drawing.color.white
     }
 
     local styledText = styledtext.new('🔨 ' .. messageText, styledTextAttributes)
@@ -20,6 +21,7 @@ statusmessage.new = function(messageText)
       w = styledTextSize.w + 40,
       h = styledTextSize.h + 40,
     }
+
     local text = drawing.text(textRect, styledText):setAlpha(0.7)
 
     local background = drawing.rectangle(
