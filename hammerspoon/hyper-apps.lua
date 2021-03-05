@@ -6,6 +6,6 @@ return {
   { 't', 'iTerm' },
   { 'i', 'IntelliJ IDEA Ultimate' },
   { 'i', 'IntelliJ IDEA' },
-  { 'r', 'Discord' },
+  { 'a', 'Discord' },
   { 'o', 'Visual Studio Code' },
 }
