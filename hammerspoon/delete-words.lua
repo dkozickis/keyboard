@@ -14,6 +14,11 @@ hs.hotkey.bind({'alt'}, 'h', function()
   end
 end)
 
+-- Use option + i to delete symbol
+hs.hotkey.bind({'alt'}, 'i', function()
+  keyUpDown({}, 'delete')
+end)
+
 -- Use option + l to delete next word
 hs.hotkey.bind({'alt'}, 'l', function()
   if isInTerminal() then
