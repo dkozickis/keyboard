@@ -2,13 +2,13 @@
   "entries": {
     "cask": {
       "karabiner-elements": {
-        "version": "12.10.0",
+        "version": "13.4.0",
         "options": {
           "full_name": "karabiner-elements"
         }
       },
       "hammerspoon": {
-        "version": "0.9.76",
+        "version": "0.9.88",
         "options": {
           "full_name": "hammerspoon"
         }
@@ -24,6 +24,14 @@
         "CLT": "10.3.0.0.1.1562985497",
         "Xcode": "10.3",
         "macOS": "10.14.6"
+      },
+      "catalina": {
+        "HOMEBREW_VERSION": "3.1.4",
+        "HOMEBREW_PREFIX": "/usr/local",
+        "Homebrew/homebrew-core": "e5aca898e17dcf6f5b7f7d1afbe387b4bb1236aa",
+        "CLT": "12.4.0.0.1.1610135815",
+        "Xcode": "12.0",
+        "macOS": "10.15.7"
       }
     }
   }
