@@ -1,5 +1,5 @@
 return {
-  { 'c', 'Google Chrome' },
+  { 'c', 'Firefox Developer Edition' },
   { 's', 'Slack' },
   { 'd', 'Todoist' },
   { 'g', 'Telegram Desktop' },
